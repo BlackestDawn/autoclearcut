@@ -1,0 +1,10 @@
+{
+  "name": "autoclearcut",
+  "version": "0.1.0",
+  "title": "Automatic Clear Cutting",
+  "author": "BlackestDawn",
+  "contact": "blacke4dawn@gmail.com",
+  "factorio_version": "1.1",
+  "dependencies": ["base >= 1.1"],
+  "description": "Will automatically mark trees and rocks within a roboport's range for deconstruction."
+}
