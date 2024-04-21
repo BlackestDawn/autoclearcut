@@ -23,7 +23,7 @@ local function acc_clear_cutting(entity, player)
   }
 
 	-- Find all trees within the bounding box.
-	listTrees = game.surfaces[1].find_entities_filtered({area = searchArea, type = "tree"})
+	listTrees = game.surfaces[entity.surface_index].find_entities_filtered({area = searchArea, type = "tree"})
 	-- Loop through the tree list and order their deconstruction.
 	for i,tree in pairs(listTrees) do
 		acc_order_deconstruction(tree, player)
@@ -33,7 +33,7 @@ local function acc_clear_cutting(entity, player)
 	--       For a list of up-to-date simple entities: https://wiki.factorio.com/Data.raw#simple-entity
 	if settings.global['autoclearcut-remove-rocks'].value then
 		-- Find all rocks within the bounding box.
-		listRocks = game.surfaces[1].find_entities_filtered({area = searchArea, name = {"rock-big", "rock-huge", "sand-rock-big"}})
+		listRocks = game.surfaces[entity.surface_index].find_entities_filtered({area = searchArea, name = {"rock-big", "rock-huge", "sand-rock-big"}})
 		-- Loop through the rocks list and order their deconstruction.
 		for i,rock in pairs(listRocks) do
 			acc_order_deconstruction(rock, player)
