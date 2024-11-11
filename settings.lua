@@ -12,5 +12,54 @@ data:extend({
     setting_type = "runtime-global",
     default_value = true,
     order = "b"
+  },
+  {
+    type = "bool-setting",
+    name = "autoclearcut-remove-demolisher",
+    setting_type = "runtime-global",
+    default_value = true,
+    order = "c"
+  },
+  {
+    type = "bool-setting",
+    name = "autoclearcut-remove-vents",
+    setting_type = "runtime-global",
+    default_value = true,
+    order = "d"
+  },
+  {
+    type = "bool-setting",
+    name = "autoclearcut-remove-fulgorite",
+    setting_type = "runtime-global",
+    default_value = true,
+    order = "e"
+  },
+  {
+    type = "bool-setting",
+    name = "autoclearcut-remove-ruins",
+    setting_type = "runtime-global",
+    default_value = true,
+    order = "f"
+  },
+  {
+    type = "bool-setting",
+    name = "autoclearcut-remove-pentapod",
+    setting_type = "runtime-global",
+    default_value = true,
+    order = "g"
+  },
+  {
+    type = "bool-setting",
+    name = "autoclearcut-remove-stromatolite",
+    setting_type = "runtime-global",
+    default_value = true,
+    order = "h"
+  },
+  {
+    type = "bool-setting",
+    name = "autoclearcut-remove-lithium",
+    setting_type = "runtime-global",
+    default_value = true,
+    order = "i"
   }
 })

@@ -17,29 +17,84 @@ local function acc_clear_cutting(entity, player)
   }
 
 	-- Find all trees within the search area
-	listTrees = game.surfaces[entity.surface_index].find_entities_filtered({area = searchArea, type = "tree"})
-	for _,tree in pairs(listTrees) do
-		tree.order_deconstruction(game.get_player(player).force, game.get_player(player))
+	local listEntities = game.surfaces[entity.surface_index].find_entities_filtered({area = searchArea, type = "tree"})
+	for _, rem_entity in pairs(listEntities) do
+		rem_entity.order_deconstruction(game.get_player(player).force, game.get_player(player))
 	end
 	-- Optionally, if rocks are to be deconstructed too, repeat for them.
 	-- Note: Rocks are of type "simple-entity" which includes other stuff, so we have to exclude specifically by name.
 	--       For a list of up-to-date simple entities: https://wiki.factorio.com/Data.raw#simple-entity
 	if settings.global['autoclearcut-remove-rocks'].value then
 		-- Find all rocks within the search area
-		listRocks = game.surfaces[entity.surface_index].find_entities_filtered({area = searchArea, name = {"rock-big", "rock-huge", "sand-rock-big"}})
-		for _,rock in pairs(listRocks) do
-			rock.order_deconstruction(game.get_player(player).force, game.get_player(player))
-		end
+	  listEntities = game.surfaces[entity.surface_index].find_entities_filtered({area = searchArea, name = {"big-rock", "huge-rock", "big-sand-rock"}})
+	  for _, rem_entity in pairs(listEntities) do
+		  rem_entity.order_deconstruction(game.get_player(player).force, game.get_player(player))
+	  end
+    if script.active_mods["space-age"] ~= nil then
+      -- SA rocks:
+	    listEntities = game.surfaces[entity.surface_index].find_entities_filtered({area = searchArea, name = {"big-volcanic-rock", "huge-volcanic-rock", "big-fulgora-rock"}})
+	    for _, rem_entity in pairs(listEntities) do
+		    rem_entity.order_deconstruction(game.get_player(player).force, game.get_player(player))
+	    end
+    end
 	end
+  if script.active_mods["space-age"] ~= nil then
+    -- Vulcanus: {small, medium, big}-demolisher-corpse :: vulcanus-chimney-{faded, cold, "", short, truncated}
+    if settings.global['autoclearcut-remove-demolisher'].value then
+	    listEntities = game.surfaces[entity.surface_index].find_entities_filtered({area = searchArea, name = {"small-demolisher-corpse", "medium-demolisher-corpse", "big-demolisher-corpse"}})
+	    for _, rem_entity in pairs(listEntities) do
+		    rem_entity.order_deconstruction(game.get_player(player).force, game.get_player(player))
+	    end
+    end
+    if settings.global['autoclearcut-remove-vents'].value then
+	    listEntities = game.surfaces[entity.surface_index].find_entities_filtered({area = searchArea, name = {"vulcanus-chimney-faded", "vulcanus-chimney-cold", "vulcanus-chimney", "vulcanus-chimney-short", "vulcanus-chimney-truncated"}})
+	    for _, rem_entity in pairs(listEntities) do
+		    rem_entity.order_deconstruction(game.get_player(player).force, game.get_player(player))
+	    end
+    end
+    -- Fulgora: fulgorite, fulgorite-small :: fulgoran-ruin-{small, medium, stonehenge, big, huge, colossal, vault}
+    if settings.global['autoclearcut-remove-fulgorite'].value then
+	    listEntities = game.surfaces[entity.surface_index].find_entities_filtered({area = searchArea, name = {"fulgurite", "fulgurite-small"}})
+	    for _, rem_entity in pairs(listEntities) do
+		    rem_entity.order_deconstruction(game.get_player(player).force, game.get_player(player))
+	    end
+    end
+    if settings.global['autoclearcut-remove-ruins'].value then
+	    listEntities = game.surfaces[entity.surface_index].find_entities_filtered({area = searchArea, name = {"fulgoran-ruin-small", "fulgoran-ruin-medium", "fulgoran-ruin-big", "fulgoran-ruin-huge", "fulgoran-ruin-colossal", "fulgoran-ruin-stonehenge", "fulgoran-ruin-vault"}})
+	    for _, rem_entity in pairs(listEntities) do
+		    rem_entity.order_deconstruction(game.get_player(player).force, game.get_player(player))
+	    end
+    end
+    -- Gleba: {small, medium, big}-stomper-shell :: {copper, iron}-stromatolite
+    if settings.global['autoclearcut-remove-pentapod'].value then
+	    listEntities = game.surfaces[entity.surface_index].find_entities_filtered({area = searchArea, name = {"small-stomper-shell", "medium-stomper-shell", "big-stomper-shell"}})
+	    for _, rem_entity in pairs(listEntities) do
+		    rem_entity.order_deconstruction(game.get_player(player).force, game.get_player(player))
+	    end
+    end
+    if settings.global['autoclearcut-remove-stromatolite'].value then
+	    listEntities = game.surfaces[entity.surface_index].find_entities_filtered({area = searchArea, name = {"copper-stromatolite", "iron-stromatolite"}})
+	    for _, rem_entity in pairs(listEntities) do
+		    rem_entity.order_deconstruction(game.get_player(player).force, game.get_player(player))
+	    end
+    end
+    -- Aquilo: lithium-iceberg-{big, huge}
+    if settings.global['autoclearcut-remove-lithium'].value then
+	    listEntities = game.surfaces[entity.surface_index].find_entities_filtered({area = searchArea, name = {"lithium-iceberg-big", "lithium-iceberg-huge"}})
+	    for _, rem_entity in pairs(listEntities) do
+		    rem_entity.order_deconstruction(game.get_player(player).force, game.get_player(player))
+	    end
+    end
+  end
 end
 
 -- Trigger when building entities of prototype roboport
 script.on_event(defines.events.on_built_entity,
-  function(event) acc_clear_cutting(event.created_entity, event.player_index) end,
+  function(event) acc_clear_cutting(event.entity, event.player_index) end,
   {{filter = "type", type = "roboport"}}
 )
 
 script.on_event(defines.events.on_robot_built_entity,
-  function(event) acc_clear_cutting(event.created_entity, event.created_entity.last_user.index) end,
+  function(event) acc_clear_cutting(event.entity, event.created_entity.last_user.index) end,
   {{filter = "type", type = "roboport"}}
 )
