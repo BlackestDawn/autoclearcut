@@ -95,6 +95,6 @@ script.on_event(defines.events.on_built_entity,
 )
 
 script.on_event(defines.events.on_robot_built_entity,
-  function(event) acc_clear_cutting(event.entity, event.created_entity.last_user.index) end,
+  function(event) acc_clear_cutting(event.entity, event.entity.last_user.index) end,
   {{filter = "type", type = "roboport"}}
 )
