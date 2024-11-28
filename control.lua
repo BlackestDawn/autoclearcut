@@ -95,6 +95,14 @@ script.on_event(defines.events.on_built_entity,
 )
 
 script.on_event(defines.events.on_robot_built_entity,
-  function(event) acc_clear_cutting(event.entity, event.entity.last_user.index) end,
+  function(event)
+		local playerID
+		if event.entity.last_user ~= nil then
+			playerID = event.entity.last_user.index
+		elseif event.player ~= nil then
+			playerID = event.player.index
+		end
+		acc_clear_cutting(event.entity, playerID)
+	end,
   {{filter = "type", type = "roboport"}}
 )
