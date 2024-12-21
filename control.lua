@@ -21,6 +21,7 @@ local function acc_clear_cutting(entity, player)
 	for _, rem_entity in pairs(listEntities) do
 		rem_entity.order_deconstruction(game.get_player(player).force, game.get_player(player))
 	end
+
 	-- Optionally, if rocks are to be deconstructed too, repeat for them.
 	-- Note: Rocks are of type "simple-entity" which includes other stuff, so we have to exclude specifically by name.
 	--       For a list of up-to-date simple entities: https://wiki.factorio.com/Data.raw#simple-entity
@@ -38,6 +39,22 @@ local function acc_clear_cutting(entity, player)
 	    end
     end
 	end
+
+	if settings.global["autoclearcut-remove-cliffs"].value then
+		-- Find all cliffs within the search area
+	  listEntities = game.surfaces[entity.surface_index].find_entities_filtered({area = searchArea, name = {"cliff"}})
+	  for _, rem_entity in pairs(listEntities) do
+		  rem_entity.order_deconstruction(game.get_player(player).force, game.get_player(player))
+	  end
+    if script.active_mods["space-age"] ~= nil then
+      -- SA cliffs:
+	    listEntities = game.surfaces[entity.surface_index].find_entities_filtered({area = searchArea, name = {"cliff-fulgora", "cliff-vulcanus", "cliff-gleba", "crater-cliff"}})
+	    for _, rem_entity in pairs(listEntities) do
+		    rem_entity.order_deconstruction(game.get_player(player).force, game.get_player(player))
+	    end
+    end
+	end
+
   if script.active_mods["space-age"] ~= nil then
     -- Vulcanus: {small, medium, big}-demolisher-corpse :: vulcanus-chimney-{faded, cold, "", short, truncated}
     if settings.global['autoclearcut-remove-demolisher'].value then
@@ -52,7 +69,8 @@ local function acc_clear_cutting(entity, player)
 		    rem_entity.order_deconstruction(game.get_player(player).force, game.get_player(player))
 	    end
     end
-    -- Fulgora: fulgorite, fulgorite-small :: fulgoran-ruin-{small, medium, stonehenge, big, huge, colossal, vault}
+
+		-- Fulgora: fulgorite, fulgorite-small :: fulgoran-ruin-{small, medium, stonehenge, big, huge, colossal, vault}
     if settings.global['autoclearcut-remove-fulgorite'].value then
 	    listEntities = game.surfaces[entity.surface_index].find_entities_filtered({area = searchArea, name = {"fulgurite", "fulgurite-small"}})
 	    for _, rem_entity in pairs(listEntities) do
@@ -65,7 +83,8 @@ local function acc_clear_cutting(entity, player)
 		    rem_entity.order_deconstruction(game.get_player(player).force, game.get_player(player))
 	    end
     end
-    -- Gleba: {small, medium, big}-stomper-shell :: {copper, iron}-stromatolite
+
+		-- Gleba: {small, medium, big}-stomper-shell :: {copper, iron}-stromatolite
     if settings.global['autoclearcut-remove-pentapod'].value then
 	    listEntities = game.surfaces[entity.surface_index].find_entities_filtered({area = searchArea, name = {"small-stomper-shell", "medium-stomper-shell", "big-stomper-shell"}})
 	    for _, rem_entity in pairs(listEntities) do
@@ -78,7 +97,8 @@ local function acc_clear_cutting(entity, player)
 		    rem_entity.order_deconstruction(game.get_player(player).force, game.get_player(player))
 	    end
     end
-    -- Aquilo: lithium-iceberg-{big, huge}
+
+		-- Aquilo: lithium-iceberg-{big, huge}
     if settings.global['autoclearcut-remove-lithium'].value then
 	    listEntities = game.surfaces[entity.surface_index].find_entities_filtered({area = searchArea, name = {"lithium-iceberg-big", "lithium-iceberg-huge"}})
 	    for _, rem_entity in pairs(listEntities) do
@@ -90,7 +110,13 @@ end
 
 -- Trigger when building entities of prototype roboport
 script.on_event(defines.events.on_built_entity,
-  function(event) acc_clear_cutting(event.entity, event.player_index) end,
+  function(event)
+		local playerID
+		if event.player_index ~= nil then
+			playerID = event.player_index
+		end
+		acc_clear_cutting(event.entity, playerID)
+	end,
   {{filter = "type", type = "roboport"}}
 )
 
