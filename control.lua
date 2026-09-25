@@ -66,6 +66,7 @@ script.on_event(defines.events.on_robot_built_entity,
 -- update search list on settings change
 script.on_event(defines.events.on_runtime_mod_setting_changed,
   function(event)
+    if string.sub(event.setting, 1, 13) ~= "autoclearcut-" then return end
     simple_list.build()
   end
 )
