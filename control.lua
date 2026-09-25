@@ -25,8 +25,11 @@ local function acc_clear_cutting(entity, player)
   end
 
   -- Find all simple-entities within the search area
-  listEntities = game.surfaces[entity.surface_index].find_entities_filtered({ area = searchArea, name = simple_list
-  .search_items })
+  listEntities = game.surfaces[entity.surface_index].find_entities_filtered({
+    area = searchArea,
+    name = simple_list
+        .search_items
+  })
   for _, rem_entity in pairs(listEntities) do
     rem_entity.order_deconstruction(game.get_player(player).force, game.get_player(player))
   end
@@ -58,4 +61,11 @@ script.on_event(defines.events.on_robot_built_entity,
     acc_clear_cutting(event.entity, playerID)
   end,
   { { filter = "type", type = "roboport" } }
+)
+
+-- update search list on settings change
+script.on_event(defines.events.on_runtime_mod_setting_changed,
+  function(event)
+    simple_list.build()
+  end
 )

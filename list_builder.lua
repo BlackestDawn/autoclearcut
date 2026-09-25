@@ -3,7 +3,7 @@ local mod = {}
 mod.search_items = {}
 
 function mod.build()
-  local search = mod.search_items
+  local search = {}
 
   -- Optionally, if rocks are to be deconstructed too, repeat for them.
   -- Note: Rocks are of type "simple-entity" which includes other stuff, so we have to exclude specifically by name.
