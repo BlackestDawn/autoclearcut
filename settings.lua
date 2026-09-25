@@ -22,6 +22,13 @@ data:extend({
   },
   {
     type = "bool-setting",
+    name = "autoclearcut-remove-grounditems",
+    setting_type = "runtime-global",
+    default_value = false,
+    order = "d"
+  },
+  {
+    type = "bool-setting",
     name = "autoclearcut-remove-demolisher",
     setting_type = "runtime-global",
     default_value = true,
