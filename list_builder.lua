@@ -44,17 +44,17 @@ function mod.build()
 
     -- Moshine
     if script.active_mods["Moshine"] ~= nil then
-      search = {"moshine-big-fulgora-rock","moshine-huge-volcanic-rock", table.unpack(search)}
+      search = { "moshine-big-fulgora-rock", "moshine-huge-volcanic-rock", table.unpack(search) }
     end
 
     -- Muluna
     if script.active_mods["planet-muluna"] ~= nil then
-      search = {"lunar-rock","lunar-huge-rock", table.unpack(search)}
+      search = { "lunar-rock", "lunar-huge-rock", table.unpack(search) }
     end
 
     -- Corrundum
     if script.active_mods["corrundum"] ~= nil then
-      search = {"huge-corrundum-rock", table.unpack(search)}
+      search = { "huge-corrundum-rock", table.unpack(search) }
     end
   end
 
@@ -75,12 +75,12 @@ function mod.build()
 
     -- Moshine
     if script.active_mods["Moshine"] ~= nil then
-      search = {"cliff-moshine", table.unpack(search)}
+      search = { "cliff-moshine", table.unpack(search) }
     end
 
     -- Muluna
     if script.active_mods["planet-muluna"] ~= nil then
-      search = {"cliff-muluna", table.unpack(search)}
+      search = { "cliff-muluna", table.unpack(search) }
     end
   end
 
@@ -111,6 +111,11 @@ function mod.build()
     if script.active_mods["Cerys-Moon-of-Fulgora"] ~= nil then
       search = { "cerys-ruin-small", "cerys-ruin-medium", "cerys-ruin-big", "cerys-ruin-huge", "cerys-ruin-colossal",
         table.unpack(search) }
+    end
+
+    -- Rubia
+    if script.active_mods["rubia"] ~= nil then
+      search = { "rubia-pole-remnants", "rubia-spidertron-remnants", "rubia-junk-pile", table.unpack(search) }
     end
   end
 
