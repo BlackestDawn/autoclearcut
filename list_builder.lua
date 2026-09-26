@@ -61,6 +61,11 @@ function mod.build()
     if script.active_mods["Paracelsin"] ~= nil then
       search = {"big-metallic-rock", table.unpack(search)}
     end
+
+    -- Igrys
+    if script.active_mods["Igrys"] ~= nil then
+      search = {"igrys-rock", table.unpack(search)}
+    end
   end
 
   -- Find all cliffs within the search area
@@ -121,6 +126,11 @@ function mod.build()
     -- Rubia
     if script.active_mods["rubia"] ~= nil then
       search = { "rubia-pole-remnants", "rubia-spidertron-remnants", "rubia-junk-pile", table.unpack(search) }
+    end
+
+    -- Igrys
+    if script.active_mods["Igrys"] ~= nil then
+      search = {"igrys-ruin", table.unpack(search)}
     end
   end
 
