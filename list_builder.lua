@@ -76,6 +76,11 @@ function mod.build()
     if script.active_mods["skewer_planet_vesta"] ~= nil then
       search = { "vesta-petrite", "vesta_rock_huge", table.unpack(search) }
     end
+
+    -- Tenebris Prime
+    if script.active_mods["tenebris-prime"] ~= nil then
+      search = { "quartz-node", table.unpack(search) }
+    end
   end
   -- end: Rocks
 
@@ -159,8 +164,12 @@ function mod.build()
   -- end: Ruins
 
   -- Find all "other" items within the search area
-  -- if settings.global["autoclearcut-remove-other"].value then
-  -- end
+  if settings.global["autoclearcut-remove-other"].value then
+    -- Tenebris Prime
+    if script.active_mods["tenebris-prime"] ~= nil then
+      search = { "tenecap", "lucifunnel", "glowdentale", table.unpack(search) }
+    end
+  end
   -- end: Others
 
   mod.search_items = search
