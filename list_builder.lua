@@ -46,6 +46,11 @@ function mod.build()
     if script.active_mods["Moshine"] ~= nil then
       search = {"moshine-big-fulgora-rock","moshine-huge-volcanic-rock", table.unpack(search)}
     end
+
+    -- Muluna
+    if script.active_mods["planet-muluna"] ~= nil then
+      search = {"lunar-rock","lunar-huge-rock", table.unpack(search)}
+    end
   end
 
   -- Find all cliffs within the search area
@@ -66,6 +71,11 @@ function mod.build()
     -- Moshine
     if script.active_mods["Moshine"] ~= nil then
       search = {"cliff-moshine", table.unpack(search)}
+    end
+
+    -- Muluna
+    if script.active_mods["planet-muluna"] ~= nil then
+      search = {"cliff-muluna", table.unpack(search)}
     end
   end
 
@@ -98,6 +108,10 @@ function mod.build()
         table.unpack(search) }
     end
   end
+
+  -- Find all "other" items within the search area
+  -- if settings.global["autoclearcut-remove-other"].value then
+  -- end
 
   mod.search_items = search
 end
