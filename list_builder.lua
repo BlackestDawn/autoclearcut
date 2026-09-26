@@ -41,6 +41,11 @@ function mod.build()
     if script.active_mods["Cerys-Moon-of-Fulgora"] ~= nil then
       search = { "cerys-methane-iceberg-big", "cerys-methane-iceberg-huge", table.unpack(search) }
     end
+
+    -- Moshine
+    if script.active_mods["Moshine"] ~= nil then
+      search = {"moshine-big-fulgora-rock","moshine-huge-volcanic-rock", table.unpack(search)}
+    end
   end
 
   -- Find all cliffs within the search area
@@ -56,6 +61,11 @@ function mod.build()
     -- Maraxsis
     if script.active_mods["maraxsis"] ~= nil then
       search = { "cliff-maraxsis", "cliff-maraxsis-collisionless", table.unpack(search) }
+    end
+
+    -- Moshine
+    if script.active_mods["Moshine"] ~= nil then
+      search = {"cliff-moshine", table.unpack(search)}
     end
   end
 
