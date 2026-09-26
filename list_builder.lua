@@ -205,6 +205,11 @@ function mod.build()
     if script.active_mods["pelagos"] ~= nil then
       search = { "coconut-palm", table.unpack(search) }
     end
+
+    -- Apia
+    if script.active_mods["apia"] ~= nil then
+      search = { "wild-hive", table.unpack(search) }
+    end
   end
   -- end: Others
 
