@@ -81,6 +81,11 @@ function mod.build()
     if script.active_mods["tenebris-prime"] ~= nil then
       search = { "quartz-node", table.unpack(search) }
     end
+
+    -- Pelagos
+    if script.active_mods["pelagos"] ~= nil then
+      search = { "pelagos-big-rock", table.unpack(search) }
+    end
   end
   -- end: Rocks
 
@@ -129,6 +134,11 @@ function mod.build()
     if script.active_mods["maraxsis"] ~= nil then
       search = { "maraxsis-mollusk-husk", table.unpack(search) }
     end
+
+    -- Pelagos
+    if script.active_mods["pelagos"] ~= nil then
+      search = { "pelagos-copper-stromatolite", "pelagos-titanium-coral", table.unpack(search) }
+    end
   end
   -- end: Creatures
 
@@ -168,6 +178,11 @@ function mod.build()
     -- Tenebris Prime
     if script.active_mods["tenebris-prime"] ~= nil then
       search = { "tenecap", "lucifunnel", "glowdentale", table.unpack(search) }
+    end
+
+    -- Pelagos
+    if script.active_mods["pelagos"] ~= nil then
+      search = { "coconut-palm", table.unpack(search) }
     end
   end
   -- end: Others
