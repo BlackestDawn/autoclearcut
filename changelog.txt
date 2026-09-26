@@ -1,6 +1,8 @@
 ---------------------------------------------------------------------------------------------------
 Version: 0.1.6
-Date: 2026-09-25
+Date: 2026-09-26
+  Minor Features:
+    - Added ability to mark items on ground for pickup, defaults to off
   Changes:
     - Added missing entry for cliffs-setting in locales
     - Reworked the way it determines which objects to search for
