@@ -139,6 +139,11 @@ function mod.build()
     if script.active_mods["pelagos"] ~= nil then
       search = { "pelagos-copper-stromatolite", "pelagos-titanium-coral", table.unpack(search) }
     end
+
+    -- Lignumis
+    if script.active_mods["lignumis"] ~= nil then
+      search = { "gold-stromatolite", table.unpack(search) }
+    end
   end
   -- end: Creatures
 
