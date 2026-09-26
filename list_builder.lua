@@ -51,6 +51,11 @@ function mod.build()
     if script.active_mods["planet-muluna"] ~= nil then
       search = {"lunar-rock","lunar-huge-rock", table.unpack(search)}
     end
+
+    -- Corrundum
+    if script.active_mods["corrundum"] ~= nil then
+      search = {"huge-corrundum-rock", table.unpack(search)}
+    end
   end
 
   -- Find all cliffs within the search area
