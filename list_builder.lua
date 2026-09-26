@@ -8,20 +8,36 @@ function mod.build()
   -- Optionally, if rocks are to be deconstructed too, repeat for them.
   -- Note: Rocks are of type "simple-entity" which includes other stuff, so we have to exclude specifically by name.
   --       For a list of up-to-date simple entities: https://wiki.factorio.com/Data.raw#simple-entity
+
+
+  -- Find all rocks within the search area
   if settings.global['autoclearcut-remove-rocks'].value then
-    -- Find all rocks within the search area
+    -- Base
     search = { "big-rock", "huge-rock", "big-sand-rock", table.unpack(search) }
+
+    -- Space Age
     if script.active_mods["space-age"] ~= nil then
-      -- SA rocks:
       search = { "big-volcanic-rock", "huge-volcanic-rock", "big-fulgora-rock", table.unpack(search) }
+    end
+
+    -- Alien Biomes
+    if script.active_mods["alien-biomes"] ~= nil then
+      search = { "huge-rock-aubergine", "huge-rock-beige", "huge-rock-black", "huge-rock-brown", "huge-rock-cream",
+        "huge-rock-dustyrose", "huge-rock-grey", "huge-rock-purple", "huge-rock-red", "huge-rock-tan", "huge-rock-violet",
+        "huge-rock-volcanic", "huge-rock-white", "big-rock-aubergine", "big-rock-beige", "big-rock-black",
+        "big-rock-brown", "big-rock-cream", "big-rock-dustyrose", "big-rock-grey", "big-rock-purple", "big-rock-red",
+        "big-rock-tan", "big-rock-violet", "big-rock-volcanic", "big-rock-white", "sand-big-rock-black",
+        "sand-big-rock-purple", "sand-big-rock-red", "sand-big-rock-tan", "sand-big-rock-white", table.unpack(search) }
     end
   end
 
+  -- Find all cliffs within the search area
   if settings.global["autoclearcut-remove-cliffs"].value then
-    -- Find all cliffs within the search area
+    -- Base
     search = { "cliff", table.unpack(search) }
+
+    -- Space Age
     if script.active_mods["space-age"] ~= nil then
-      -- SA cliffs:
       search = { "cliff-fulgora", "cliff-vulcanus", "cliff-gleba", "crater-cliff", table.unpack(search) }
     end
   end
