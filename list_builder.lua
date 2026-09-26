@@ -34,7 +34,12 @@ function mod.build()
     -- Maraxis
     if script.active_mods["maraxsis"] ~= nil then
       search = { "big-sand-rock-underwater", "maraxsis-trench-wall", "maraxsis-trench-wall-collisionless",
-      "maraxsis-chimney", table.unpack(search) }
+        "maraxsis-chimney", table.unpack(search) }
+    end
+
+    -- Cerys
+    if script.active_mods["Cerys-Moon-of-Fulgora"] ~= nil then
+      search = { "cerys-methane-iceberg-big", "cerys-methane-iceberg-huge", table.unpack(search) }
     end
   end
 
@@ -75,6 +80,12 @@ function mod.build()
     if script.active_mods["space-age"] ~= nil then
       search = { "fulgoran-ruin-small", "fulgoran-ruin-medium", "fulgoran-ruin-big", "fulgoran-ruin-huge",
         "fulgoran-ruin-colossal", "fulgoran-ruin-stonehenge", "fulgoran-ruin-vault", table.unpack(search) }
+    end
+
+    -- Cerys
+    if script.active_mods["Cerys-Moon-of-Fulgora"] ~= nil then
+      search = { "cerys-ruin-small", "cerys-ruin-medium", "cerys-ruin-big", "cerys-ruin-huge", "cerys-ruin-colossal",
+        table.unpack(search) }
     end
   end
 
