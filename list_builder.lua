@@ -92,6 +92,11 @@ function mod.build()
       search = { "hyarion-huge-volcanic-rock", "hyarion-big-volcanic-rock", "hyarion-chimney", "hyarion-chimney-short",
         "hyarion-chimney-truncated", "hyarion-chimney-cold", "hyarion-chimney-faded", table.unpack(search) }
     end
+
+    -- Rabbasca
+    if script.active_mods["planet-rabbasca"] ~= nil then
+      search = { "rabbasca-big-rock", table.unpack(search) }
+    end
   end
   -- end: Rocks
 
