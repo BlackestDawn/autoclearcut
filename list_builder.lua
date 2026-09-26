@@ -155,6 +155,11 @@ function mod.build()
     if script.active_mods["lignumis"] ~= nil then
       search = { "gold-stromatolite", table.unpack(search) }
     end
+
+    -- Planetaris Tellus
+    if script.active_mods["planetaris-tellus"] ~= nil then
+      search = { "planetaris-magnesium-stromatolite", table.unpack(search) }
+    end
   end
   -- end: Creatures
 
