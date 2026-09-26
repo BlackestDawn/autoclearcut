@@ -56,6 +56,11 @@ function mod.build()
     if script.active_mods["corrundum"] ~= nil then
       search = { "huge-corrundum-rock", table.unpack(search) }
     end
+
+    -- Paracelsin
+    if script.active_mods["Paracelsin"] ~= nil then
+      search = {"big-metallic-rock", table.unpack(search)}
+    end
   end
 
   -- Find all cliffs within the search area
