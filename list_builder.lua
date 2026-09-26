@@ -29,6 +29,12 @@ function mod.build()
         "big-rock-tan", "big-rock-violet", "big-rock-volcanic", "big-rock-white", "sand-big-rock-black",
         "sand-big-rock-purple", "sand-big-rock-red", "sand-big-rock-tan", "sand-big-rock-white", table.unpack(search) }
     end
+
+    -- Maraxis
+    if script.active_mods["maraxsis"] ~= nil then
+      search = {"maraxsis-mollusk-husk", "big-sand-rock-underwater", "maraxsis-trench-wall", "maraxsis-trench-wall-collisionless",
+      "maraxsis-chimney", table.unpack(search) }
+    end
   end
 
   -- Find all cliffs within the search area
@@ -39,6 +45,11 @@ function mod.build()
     -- Space Age
     if script.active_mods["space-age"] ~= nil then
       search = { "cliff-fulgora", "cliff-vulcanus", "cliff-gleba", "crater-cliff", table.unpack(search) }
+    end
+
+    -- Maraxsis
+    if script.active_mods["maraxsis"] ~= nill then
+      search = { "cliff-maraxsis", "cliff-maraxsis-collisionless", table.unpack(search) }
     end
   end
 
