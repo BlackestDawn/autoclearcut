@@ -59,14 +59,20 @@ function mod.build()
 
     -- Paracelsin
     if script.active_mods["Paracelsin"] ~= nil then
-      search = {"big-metallic-rock", table.unpack(search)}
+      search = { "big-metallic-rock", table.unpack(search) }
     end
 
     -- Igrys
     if script.active_mods["Igrys"] ~= nil then
-      search = {"igrys-rock", table.unpack(search)}
+      search = { "igrys-rock", table.unpack(search) }
+    end
+
+    -- Planetaris: Arig
+    if script.active_mods["planetaris-arig"] ~= nil then
+      search = { "arig-medium-sand-rock", "arig-big-sand-rock", table.unpack(search) }
     end
   end
+  -- end: Rocks
 
   -- Find all cliffs within the search area
   if settings.global["autoclearcut-remove-cliffs"].value then
@@ -92,7 +98,13 @@ function mod.build()
     if script.active_mods["planet-muluna"] ~= nil then
       search = { "cliff-muluna", table.unpack(search) }
     end
+
+    -- Planetaris: Arig
+    if script.active_mods["planetaris-arig"] ~= nil then
+      search = { "arig-cliff", table.unpack(search) }
+    end
   end
+  -- end: Cliffs
 
   -- Find all creature remains within the search area
   if settings.global['autoclearcut-remove-creatures'].value then
@@ -108,6 +120,7 @@ function mod.build()
       search = { "maraxsis-mollusk-husk", table.unpack(search) }
     end
   end
+  -- end: Creatures
 
   -- Find all ruins within the search area
   if settings.global['autoclearcut-remove-ruins'].value then
@@ -130,13 +143,20 @@ function mod.build()
 
     -- Igrys
     if script.active_mods["Igrys"] ~= nil then
-      search = {"igrys-ruin", table.unpack(search)}
+      search = { "igrys-ruin", table.unpack(search) }
+    end
+
+    -- Planetaris: Arig
+    if script.active_mods["planetaris-arig"] ~= nil then
+      search = {"arig-crash", table.unpack(search)}
     end
   end
+  -- end: Ruins
 
   -- Find all "other" items within the search area
   -- if settings.global["autoclearcut-remove-other"].value then
   -- end
+  -- end: Others
 
   mod.search_items = search
 end
