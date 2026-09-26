@@ -97,6 +97,12 @@ function mod.build()
     if script.active_mods["planet-rabbasca"] ~= nil then
       search = { "rabbasca-big-rock", table.unpack(search) }
     end
+
+    -- Crucible
+    if script.active_mods["planet-crucible"] ~= nil then
+      search = { "planet-crucible-chimney", "planet-crucible-big-rock", "planet-crucible-huge-rock",
+        "planet-crucible-alum-rock", "planet-crucible-alum-rock-small", table.unpack(search) }
+    end
   end
   -- end: Rocks
 
