@@ -5,8 +5,7 @@ mod.search_items = {}
 function mod.build()
   local search = {}
 
-  -- Optionally, if rocks are to be deconstructed too, repeat for them.
-  -- Note: Rocks are of type "simple-entity" which includes other stuff, so we have to exclude specifically by name.
+  -- Note: Rocks and similar are of type "simple-entity" which includes other stuff, so we have to exclude specifically by name.
   --       For a list of up-to-date simple entities: https://wiki.factorio.com/Data.raw#simple-entity
 
 
@@ -17,7 +16,9 @@ function mod.build()
 
     -- Space Age
     if script.active_mods["space-age"] ~= nil then
-      search = { "big-volcanic-rock", "huge-volcanic-rock", "big-fulgora-rock", table.unpack(search) }
+      search = { "big-volcanic-rock", "huge-volcanic-rock", "big-fulgora-rock", "vulcanus-chimney-faded",
+        "vulcanus-chimney-cold", "vulcanus-chimney", "vulcanus-chimney-short", "vulcanus-chimney-truncated",
+        "fulgurite", "fulgurite-small", "lithium-iceberg-big", "lithium-iceberg-huge", table.unpack(search) }
     end
 
     -- Alien Biomes
@@ -32,7 +33,7 @@ function mod.build()
 
     -- Maraxis
     if script.active_mods["maraxsis"] ~= nil then
-      search = {"maraxsis-mollusk-husk", "big-sand-rock-underwater", "maraxsis-trench-wall", "maraxsis-trench-wall-collisionless",
+      search = { "big-sand-rock-underwater", "maraxsis-trench-wall", "maraxsis-trench-wall-collisionless",
       "maraxsis-chimney", table.unpack(search) }
     end
   end
@@ -48,41 +49,32 @@ function mod.build()
     end
 
     -- Maraxsis
-    if script.active_mods["maraxsis"] ~= nill then
+    if script.active_mods["maraxsis"] ~= nil then
       search = { "cliff-maraxsis", "cliff-maraxsis-collisionless", table.unpack(search) }
     end
   end
 
-  if script.active_mods["space-age"] ~= nil then
-    -- Vulcanus: {small, medium, big}-demolisher-corpse :: vulcanus-chimney-{faded, cold, "", short, truncated}
-    if settings.global['autoclearcut-remove-demolisher'].value then
-      search = { "small-demolisher-corpse", "medium-demolisher-corpse", "big-demolisher-corpse", table.unpack(search) }
-    end
-    if settings.global['autoclearcut-remove-vents'].value then
-      search = { "vulcanus-chimney-faded", "vulcanus-chimney-cold", "vulcanus-chimney", "vulcanus-chimney-short",
-        "vulcanus-chimney-truncated", table.unpack(search) }
+  -- Find all creature remains within the search area
+  if settings.global['autoclearcut-remove-creatures'].value then
+    -- Space Age
+    if script.active_mods["space-age"] ~= nil then
+      search = { "small-demolisher-corpse", "medium-demolisher-corpse", "big-demolisher-corpse",
+        "small-stomper-shell", "medium-stomper-shell", "big-stomper-shell",
+        "copper-stromatolite", "iron-stromatolite", table.unpack(search) }
     end
 
-    -- Fulgora: fulgorite, fulgorite-small :: fulgoran-ruin-{small, medium, stonehenge, big, huge, colossal, vault}
-    if settings.global['autoclearcut-remove-fulgorite'].value then
-      search = { "fulgurite", "fulgurite-small", table.unpack(search) }
+    -- Maraxsis
+    if script.active_mods["maraxsis"] ~= nil then
+      search = { "maraxsis-mollusk-husk", table.unpack(search) }
     end
-    if settings.global['autoclearcut-remove-ruins'].value then
+  end
+
+  -- Find all ruins within the search area
+  if settings.global['autoclearcut-remove-ruins'].value then
+    -- Space Age
+    if script.active_mods["space-age"] ~= nil then
       search = { "fulgoran-ruin-small", "fulgoran-ruin-medium", "fulgoran-ruin-big", "fulgoran-ruin-huge",
         "fulgoran-ruin-colossal", "fulgoran-ruin-stonehenge", "fulgoran-ruin-vault", table.unpack(search) }
-    end
-
-    -- Gleba: {small, medium, big}-stomper-shell :: {copper, iron}-stromatolite
-    if settings.global['autoclearcut-remove-pentapod'].value then
-      search = { "small-stomper-shell", "medium-stomper-shell", "big-stomper-shell", table.unpack(search) }
-    end
-    if settings.global['autoclearcut-remove-stromatolite'].value then
-      search = { "copper-stromatolite", "iron-stromatolite", table.unpack(search) }
-    end
-
-    -- Aquilo: lithium-iceberg-{big, huge}
-    if settings.global['autoclearcut-remove-lithium'].value then
-      search = { "lithium-iceberg-big", "lithium-iceberg-huge", table.unpack(search) }
     end
   end
 

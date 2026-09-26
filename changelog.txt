@@ -1,4 +1,12 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.3.0
+Date: 2026-09-26
+  Changes:
+    - Consolidated per-object settings into categories: rocks, creatures, ruins, other
+      Existing saves are migrated; a category stays enabled only if all settings merged into it were enabled
+    - Added support for mod: Alien Biomes
+    - Added support for mod: Maraxsis
+---------------------------------------------------------------------------------------------------
 Version: 0.2.0
 Date: 2026-09-26
   Minor Features:
