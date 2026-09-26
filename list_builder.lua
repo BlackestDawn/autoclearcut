@@ -86,6 +86,12 @@ function mod.build()
     if script.active_mods["pelagos"] ~= nil then
       search = { "pelagos-big-rock", table.unpack(search) }
     end
+
+    -- Planetaris: Hyarion
+    if script.active_mods["planetaris-hyarion"] ~= nil then
+      search = { "hyarion-huge-volcanic-rock", "hyarion-big-volcanic-rock", "hyarion-chimney", "hyarion-chimney-short",
+        "hyarion-chimney-truncated", "hyarion-chimney-cold", "hyarion-chimney-faded", table.unpack(search) }
+    end
   end
   -- end: Rocks
 
@@ -117,6 +123,11 @@ function mod.build()
     -- Planetaris: Arig
     if script.active_mods["planetaris-arig"] ~= nil then
       search = { "arig-cliff", table.unpack(search) }
+    end
+
+    -- Planetaris: Hyarion
+    if script.active_mods["planetaris-hyarion"] ~= nil then
+      search = { "hyarion-cliff", "hyarion-crater-cliff", table.unpack(search) }
     end
   end
   -- end: Cliffs
