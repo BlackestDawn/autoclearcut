@@ -33,6 +33,14 @@ local function acc_clear_cutting(entity, player)
   for _, rem_entity in pairs(listEntities) do
     rem_entity.order_deconstruction(game.get_player(player).force, game.get_player(player))
   end
+
+  if settings.global['autoclearcut-remove-grounditems'].value then
+    listEntities = game.surfaces[entity.surface_index].find_entities_filtered({ area = searchArea, type = "item-entity", name =
+    "item-on-ground" })
+    for _, rem_entity in pairs(listEntities) do
+      rem_entity.order_deconstruction(game.get_player(player).force, game.get_player(player))
+    end
+  end
 end
 
 -- Initialize simple_list
