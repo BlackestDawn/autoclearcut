@@ -71,6 +71,11 @@ function mod.build()
     if script.active_mods["planetaris-arig"] ~= nil then
       search = { "arig-medium-sand-rock", "arig-big-sand-rock", table.unpack(search) }
     end
+
+    -- Vesta
+    if script.active_mods["skewer_planet_vesta"] ~= nil then
+      search = { "vesta-petrite", "vesta_rock_huge", table.unpack(search) }
+    end
   end
   -- end: Rocks
 
@@ -148,7 +153,7 @@ function mod.build()
 
     -- Planetaris: Arig
     if script.active_mods["planetaris-arig"] ~= nil then
-      search = {"arig-crash", table.unpack(search)}
+      search = { "arig-crash", table.unpack(search) }
     end
   end
   -- end: Ruins
