@@ -29,51 +29,45 @@ data:extend({
   },
   {
     type = "bool-setting",
-    name = "autoclearcut-remove-demolisher",
+    name = "autoclearcut-remove-creatures",
     setting_type = "runtime-global",
     default_value = true,
-    order = "g"
-  },
-  {
-    type = "bool-setting",
-    name = "autoclearcut-remove-vents",
-    setting_type = "runtime-global",
-    default_value = true,
-    order = "h"
-  },
-  {
-    type = "bool-setting",
-    name = "autoclearcut-remove-fulgorite",
-    setting_type = "runtime-global",
-    default_value = true,
-    order = "i"
+    order = "e"
   },
   {
     type = "bool-setting",
     name = "autoclearcut-remove-ruins",
     setting_type = "runtime-global",
     default_value = true,
-    order = "j"
+    order = "f"
   },
   {
     type = "bool-setting",
-    name = "autoclearcut-remove-pentapod",
+    name = "autoclearcut-remove-plants",
     setting_type = "runtime-global",
-    default_value = true,
-    order = "k"
+    default_value = false,
+    order = "g"
   },
   {
     type = "bool-setting",
-    name = "autoclearcut-remove-stromatolite",
+    name = "autoclearcut-remove-other",
     setting_type = "runtime-global",
     default_value = true,
-    order = "l"
-  },
-  {
-    type = "bool-setting",
-    name = "autoclearcut-remove-lithium",
-    setting_type = "runtime-global",
-    default_value = true,
-    order = "m"
+    order = "i"
   }
 })
+
+-- Legacy settings from 0.2.0 and earlier, hidden and only kept so migrations/0.3.0-consolidate-settings.lua can read their values.
+-- Can be removed in a later version once saves have had a chance to migrate.
+local legacy = { "demolisher", "vents", "fulgorite", "pentapod", "stromatolite", "lithium" }
+for _, name in pairs(legacy) do
+  data:extend({
+    {
+      type = "bool-setting",
+      name = "autoclearcut-remove-" .. name,
+      setting_type = "runtime-global",
+      default_value = true,
+      hidden = true
+    }
+  })
+end
