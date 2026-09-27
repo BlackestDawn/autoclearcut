@@ -113,6 +113,12 @@ function mod.build()
     if script.active_mods["foliax"] ~= nil then
       search = { "foliax-iron-rock", "foliax-scrap-rock", "foliax-tungsten-rock", table.unpack(search) }
     end
+
+    -- Carna
+    if script.active_mods["carna"] ~= nil then
+      search = { "carna-mecha-rock-big", "carna-mecha-rock-huge", "carna-mecha-rock2-big", "carna-interland-rock-big",
+        "carna-interland-rock-medium", "carna-interland-rock-medium2", table.unpack(search) }
+    end
   end
   -- end: Rocks
 
@@ -154,6 +160,11 @@ function mod.build()
     -- Foliax
     if script.active_mods["foliax"] ~= nil then
       search = { "cliff-foliax", table.unpack(search) }
+    end
+
+    -- Carna
+    if script.active_mods["carna"] ~= nil then
+      search = { "cliff-carna", table.unpack(search) }
     end
   end
   -- end: Cliffs
@@ -221,6 +232,15 @@ function mod.build()
     -- Planetaris: Arig
     if script.active_mods["planetaris-arig"] ~= nil then
       search = { "arig-crash", table.unpack(search) }
+    end
+
+    -- Carna
+    if script.active_mods["carna"] ~= nil then
+      search = { "carna-assembling-machine-found-snow", "carna-mecha-geyser-medium", "carna-mecha-geyser-big",
+        "carna-mecha-geyser-huge", "carna-mecha-rock2-huge", "carna-interland-lamp", "carna-interland-rock-huge",
+        "carna-object-small", "carna-object-medium", "carna-object-big", "carna-object-huge", "carna-object-colossal",
+        "carna-object2-small", "carna-object2-medium", "carna-object2-big", "carna-object2-huge",
+        "carna-object2-colossal", table.unpack(search) }
     end
   end
   -- end: Ruins
