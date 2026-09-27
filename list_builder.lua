@@ -108,6 +108,11 @@ function mod.build()
     if script.active_mods["Muria"] ~= nil then
       search = { "big-chloric-rock", table.unpack(search) }
     end
+
+    -- Foliax
+    if script.active_mods["foliax"] ~= nil then
+      search = { "foliax-iron-rock", "foliax-scrap-rock", "foliax-tungsten-rock", table.unpack(search) }
+    end
   end
   -- end: Rocks
 
@@ -144,6 +149,11 @@ function mod.build()
     -- Planetaris: Hyarion
     if script.active_mods["planetaris-hyarion"] ~= nil then
       search = { "hyarion-cliff", "hyarion-crater-cliff", table.unpack(search) }
+    end
+
+    -- Foliax
+    if script.active_mods["foliax"] ~= nil then
+      search = { "cliff-foliax", table.unpack(search) }
     end
   end
   -- end: Cliffs
@@ -215,7 +225,7 @@ function mod.build()
   end
   -- end: Ruins
 
-  -- Find all "extra" plant items within the search area
+  -- Find all re-plantable and/or non tree-type plant items within the search area
   if settings.global["autoclearcut-remove-plants"].value then
     -- Space Age
     if script.active_mods["space-age"] ~= nil then
@@ -240,6 +250,16 @@ function mod.build()
     -- Muria
     if script.active_mods["Muria"] ~= nil then
       search = { "eschatotaxite", table.unpack(search) }
+    end
+
+    -- Foliax
+    if script.active_mods["foliax"] ~= nil then
+      search = { "spoilage-farm-tree", "bauxite-farm-tree", "iron-farm-tree", "copper-farm-tree", "zinc-farm-tree",
+        "tin-farm-tree", "lead-farm-tree", "bitumen-farm-tree", "uranium-farm-tree", "calcite-farm-tree",
+        "tungsten-farm-tree", "obsidian-farm-tree", "holmium-farm-tree", "lithium-farm-tree", "fluorite-farm-tree",
+        "scrap-farm-tree", "stone-farm-tree", "coal-farm-tree", "wood-farm-tree", "arcane-farm-tree",
+        "promethium-farm-tree", "yumako-farm-tree", "jellystem-farm-tree", "sulfur-farm-tree", "spoilage-farm-tree",
+        table.unpack(search) }
     end
   end
   -- end: Plants
