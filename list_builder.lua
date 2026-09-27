@@ -119,6 +119,11 @@ function mod.build()
       search = { "carna-mecha-rock-big", "carna-mecha-rock-huge", "carna-mecha-rock2-big", "carna-interland-rock-big",
         "carna-interland-rock-medium", "carna-interland-rock-medium2", table.unpack(search) }
     end
+
+    -- Arcanyx
+    if script.active_mods["Arcanyx"] ~= nil then
+      search = { "arcanyx-big-rock","arcanyx-huge-rock", table.unpack(search) }
+    end
   end
   -- end: Rocks
 
