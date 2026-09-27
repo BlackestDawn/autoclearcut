@@ -139,6 +139,13 @@ function mod.build()
     if script.active_mods["alchemy-khemia"] ~= nil then
       search = { "medium-rock-alchemy", table.unpack(search) }
     end
+
+    -- Obsidiax
+    if script.active_mods["obsidiax"] ~= nil then
+      search = { "iron-rock-tree", "copper-rock-tree", "uranium-rock-tree", "tungsten-rock-tree", "calcite-rock-tree",
+        "holmium-rock-tree", "scrap-rock-tree", "lithium-rock-tree", "fluorite-rock-tree", "bitumen-rock-tree",
+        "sulfur-rock-tree", "wood-rock-tree", table.unpack(search) }
+    end
   end
   -- end: Rocks
 
