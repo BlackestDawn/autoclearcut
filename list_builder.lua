@@ -285,6 +285,14 @@ function mod.build()
     if script.active_mods["alchemy-khemia"] ~= nil then
       search = { "small-alchemy-wreakage", table.unpack(search) }
     end
+
+    -- Abacayba
+    if script.active_mods["Abacayba_Moon_of_Nauvis"] ~= nil then
+      search = { "abacayba-academy-ruin", "abacayba-armoury-ruin", "abacayba-engineering_bay-ruin",
+        "abacayba-science_facility-ruin", "abacayba-command_centre-ruin", "abacayba-starport-ruin",
+        "abacayba-factory-ruin", "abacayba-barracks-ruin", "abacayba-bunker-ruin", "abacayba-supply_depot-ruin",
+        table.unpack(search) }
+    end
   end
   -- end: Ruins
 
