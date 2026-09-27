@@ -146,6 +146,11 @@ function mod.build()
         "holmium-rock-tree", "scrap-rock-tree", "lithium-rock-tree", "fluorite-rock-tree", "bitumen-rock-tree",
         "sulfur-rock-tree", "wood-rock-tree", table.unpack(search) }
     end
+
+    -- Omnia
+    if script.active_mods["omnia"] ~= nil then
+      search = { "omnia-big-rock", table.unpack(search) }
+    end
   end
   -- end: Rocks
 
