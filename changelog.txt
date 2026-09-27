@@ -5,6 +5,7 @@ Date: 2026-09-27
     - Added plants category with associated setting, will be for re-plantable resources flora like
       Yamako and Jellystem on Gleba. These were under "other" previously
     - Added support for more mods, mainly additional planets
+    - Added safegaurds for when in editor mode & for some edge cases
 ---------------------------------------------------------------------------------------------------
 Version: 0.3.0
 Date: 2026-09-26
