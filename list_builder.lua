@@ -103,6 +103,11 @@ function mod.build()
       search = { "planet-crucible-chimney", "planet-crucible-big-rock", "planet-crucible-huge-rock",
         "planet-crucible-alum-rock", "planet-crucible-alum-rock-small", table.unpack(search) }
     end
+
+    -- Muria
+    if script.active_mods["Muria"] ~= nil then
+      search = { "big-chloric-rock", table.unpack(search) }
+    end
   end
   -- end: Rocks
 
@@ -171,6 +176,11 @@ function mod.build()
     if script.active_mods["planetaris-tellus"] ~= nil then
       search = { "planetaris-magnesium-stromatolite", table.unpack(search) }
     end
+
+    -- Muria
+    if script.active_mods["Muria"] ~= nil then
+      search = { "cotunnite-lichen-colony", "holmium-lichen-colony", "metallic-lichen-colony", table.unpack(search) }
+    end
   end
   -- end: Creatures
 
@@ -220,6 +230,11 @@ function mod.build()
     -- Apia
     if script.active_mods["apia"] ~= nil then
       search = { "wild-hive", table.unpack(search) }
+    end
+
+    -- Muria
+    if script.active_mods["Muria"] ~= nil then
+      search = { "eschatotaxite", table.unpack(search) }
     end
   end
   -- end: Others
