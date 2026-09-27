@@ -134,6 +134,11 @@ function mod.build()
     if script.active_mods["moon-eneas"] ~= nil then
       search = { "rock-01-eneas", "rock-02-eneas", table.unpack(search) }
     end
+
+    -- Khemia
+    if script.active_mods["alchemy-khemia"] ~= nil then
+      search = { "medium-rock-alchemy", table.unpack(search) }
+    end
   end
   -- end: Rocks
 
@@ -262,6 +267,11 @@ function mod.build()
     if script.active_mods["moon-eneas"] ~= nil then
       search = { "eneas-ruin-medium", "eneas-ruin-big", "eneas-ruin-small", "eneas-ruin-stonehenge", "stonehenge-core",
         "eneas-ruin-colossal", "eneas-ruin-huge", "eneas-ruin-huge-tall", table.unpack(search) }
+    end
+
+    -- Khemia
+    if script.active_mods["alchemy-khemia"] ~= nil then
+      search = { "small-alchemy-wreakage", table.unpack(search) }
     end
   end
   -- end: Ruins
