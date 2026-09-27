@@ -45,6 +45,7 @@ end
 
 -- Initialize simple_list
 simple_list.build()
+print(helpers.table_to_json(script.active_mods))
 
 -- Trigger when building entities of prototype roboport
 script.on_event(defines.events.on_built_entity,
