@@ -129,6 +129,11 @@ function mod.build()
     if script.active_mods["ribbonia"] ~= nil then
       search = { "artificial-big-rock", "artificial-huge-rock", table.unpack(search) }
     end
+
+    -- Eneas
+    if script.active_mods["moon-eneas"] ~= nil then
+      search = { "rock-01-eneas", "rock-02-eneas", table.unpack(search) }
+    end
   end
   -- end: Rocks
 
@@ -252,6 +257,12 @@ function mod.build()
         "carna-object2-small", "carna-object2-medium", "carna-object2-big", "carna-object2-huge",
         "carna-object2-colossal", table.unpack(search) }
     end
+
+    -- Eneas
+    if script.active_mods["moon-eneas"] ~= nil then
+      search = { "eneas-ruin-medium", "eneas-ruin-big", "eneas-ruin-small", "eneas-ruin-stonehenge", "stonehenge-core",
+        "eneas-ruin-colossal", "eneas-ruin-huge", "eneas-ruin-huge-tall", table.unpack(search) }
+    end
   end
   -- end: Ruins
 
@@ -295,8 +306,12 @@ function mod.build()
   -- end: Plants
 
   -- Find all "other" items within the search area
-  -- if settings.global["autoclearcut-remove-other"].value then
-  -- end
+  if settings.global["autoclearcut-remove-other"].value then
+    -- Eneas
+    if script.active_mods["moon-eneas"] ~= nil then
+      search = { "debris-a", "debris-b", "debris-c", table.unpack(search) }
+    end
+  end
   -- end: Others
 
   mod.search_items = search
