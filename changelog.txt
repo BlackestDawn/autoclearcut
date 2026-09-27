@@ -1,4 +1,10 @@
 ---------------------------------------------------------------------------------------------------
+Version: 0.3.1
+Date: 2026-09-27
+  Changes:
+    - Added plants category with associated setting, will be for re-plantable resources flora like
+      Yamako and Jellystem on Gleba. These were under "other" previously
+---------------------------------------------------------------------------------------------------
 Version: 0.3.0
 Date: 2026-09-26
   Changes:

@@ -215,8 +215,13 @@ function mod.build()
   end
   -- end: Ruins
 
-  -- Find all "other" items within the search area
-  if settings.global["autoclearcut-remove-other"].value then
+  -- Find all "extra" plant items within the search area
+  if settings.global["autoclearcut-remove-plants"].value then
+    -- Space Age
+    if script.active_mods["space-age"] ~= nil then
+      search = { "yumako-tree", "jellystem", table.unpack(search) }
+    end
+
     -- Tenebris Prime
     if script.active_mods["tenebris-prime"] ~= nil then
       search = { "tenecap", "lucifunnel", "glowdentale", table.unpack(search) }
@@ -237,6 +242,11 @@ function mod.build()
       search = { "eschatotaxite", table.unpack(search) }
     end
   end
+  -- end: Plants
+
+  -- Find all "other" items within the search area
+  -- if settings.global["autoclearcut-remove-other"].value then
+  -- end
   -- end: Others
 
   mod.search_items = search

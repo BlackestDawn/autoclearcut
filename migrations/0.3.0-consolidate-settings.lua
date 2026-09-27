@@ -1,4 +1,4 @@
--- Port the per-object settings from 0.1.x into the consolidated categories.
+-- Port the per-object settings from 0.2.x into the consolidated categories.
 -- A category is only enabled if every old setting folded into it was enabled,
 -- so nothing a player previously excluded starts getting deconstructed.
 -- "autoclearcut-remove-ruins" kept its name and needs no porting.

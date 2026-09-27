@@ -32,14 +32,21 @@ data:extend({
     name = "autoclearcut-remove-creatures",
     setting_type = "runtime-global",
     default_value = true,
-    order = "g"
+    order = "e"
   },
   {
     type = "bool-setting",
     name = "autoclearcut-remove-ruins",
     setting_type = "runtime-global",
     default_value = true,
-    order = "h"
+    order = "f"
+  },
+  {
+    type = "bool-setting",
+    name = "autoclearcut-remove-plants",
+    setting_type = "runtime-global",
+    default_value = false,
+    order = "g"
   },
   {
     type = "bool-setting",
