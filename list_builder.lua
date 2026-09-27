@@ -122,7 +122,12 @@ function mod.build()
 
     -- Arcanyx
     if script.active_mods["Arcanyx"] ~= nil then
-      search = { "arcanyx-big-rock","arcanyx-huge-rock", table.unpack(search) }
+      search = { "arcanyx-big-rock", "arcanyx-huge-rock", table.unpack(search) }
+    end
+
+    -- Ribbonia
+    if script.active_mods["ribbonia"] ~= nil then
+      search = { "artificial-big-rock", "artificial-huge-rock", table.unpack(search) }
     end
   end
   -- end: Rocks
