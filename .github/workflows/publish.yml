@@ -23,23 +23,23 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: Checkout repository
-        uses: actions/checkout@main
+        uses: actions/checkout@v7
 
       # Validation
       - name: Validate mod
-        uses: TheBrutalX/factorio-mod-uploader-action@v1
+        uses: TheBrutalX/factorio-mod-uploader-action@v2
         with:
           action: validate
 
       # Packing mod
       - name: Create zip
-        uses: TheBrutalX/factorio-mod-uploader-action@v1
+        uses: TheBrutalX/factorio-mod-uploader-action@v2
         with:
           action: compress
 
       # Upload mod
       - name: Upload Mod
-        uses: TheBrutalX/factorio-mod-uploader-action@v1
+        uses: TheBrutalX/factorio-mod-uploader-action@v2
         with:
           action: upload
           factorio-api-key: ${{ secrets.FACTORIO_API_KEY }}

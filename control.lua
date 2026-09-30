@@ -1,72 +1,17 @@
 local simple_list = require("list_builder")
-
--- Main function: Form search area, find trees/entities and mark them
-local function acc_clear_cutting(entity, playerID)
-  -- Resolve player and force once; fall back to the entity's force if no player is known
-  local player = playerID and game.get_player(playerID)
-  local force = player and player.force or entity.force
-
-  -- Form search are by getting radius from roboport, adjust it for safety margin, and make sure it's not negative
-  local radius = entity.prototype.construction_radius - settings.global["autoclearcut-margin-distance"].value
-  if radius < 0 then
-    radius = 0
-  end
-  local searchArea = {
-    left_top = {
-      x = entity.position.x - radius,
-      y = entity.position.y - radius
-    },
-    right_bottom = {
-      x = entity.position.x + radius,
-      y = entity.position.y + radius
-    }
-  }
-
-  -- Find all trees within the search area
-  local listEntities = game.surfaces[entity.surface_index].find_entities_filtered({ area = searchArea, type = "tree" })
-  for _, rem_entity in pairs(listEntities) do
-    if rem_entity.valid then
-      rem_entity.order_deconstruction(force, player)
-    end
-  end
-
-  -- Find all simple-entities within the search area
-  listEntities = game.surfaces[entity.surface_index].find_entities_filtered({
-    area = searchArea,
-    name = simple_list
-        .search_items
-  })
-  for _, rem_entity in pairs(listEntities) do
-    -- Entities can become invalid mid-loop, e.g. neighbouring cliffs get replaced when a player
-    -- in the map editor instantly deconstructs a cliff
-    if rem_entity.valid then
-      rem_entity.order_deconstruction(force, player)
-    end
-  end
-
-  -- Find all items on ground within the search area
-  if settings.global['autoclearcut-remove-grounditems'].value then
-    listEntities = game.surfaces[entity.surface_index].find_entities_filtered({ area = searchArea, type = "item-entity", name =
-    "item-on-ground" })
-    for _, rem_entity in pairs(listEntities) do
-      if rem_entity.valid then
-        rem_entity.order_deconstruction(force, player)
-      end
-    end
-  end
-end
+local clearing = require("clearing")
 
 -- Initialize simple_list
 simple_list.build()
 
--- Trigger when building entities of prototype roboport
+-- Trigger only when building entities of prototype roboport
 script.on_event(defines.events.on_built_entity,
   function(event)
     local playerID
     if event.player_index ~= nil then
       playerID = event.player_index
     end
-    acc_clear_cutting(event.entity, playerID)
+    clearing.stationary(event.entity, playerID)
   end,
   { { filter = "type", type = "roboport" } }
 )
@@ -79,15 +24,66 @@ script.on_event(defines.events.on_robot_built_entity,
     elseif event.player ~= nil then
       playerID = event.player.index
     end
-    acc_clear_cutting(event.entity, playerID)
+    clearing.stationary(event.entity, playerID)
   end,
   { { filter = "type", type = "roboport" } }
 )
 
--- update search list on settings change
+-- Update search list on settings change
 script.on_event(defines.events.on_runtime_mod_setting_changed,
   function(event)
     if string.sub(event.setting, 1, 13) ~= "autoclearcut-" then return end
     simple_list.build()
+  end
+)
+
+-- Grey out the shortcut when player has no personal roboport equipped
+local function update_shortcut_available(player)
+  player.set_shortcut_available("autoclearcut-toggle-mobile", clearing.has_personal_roboport(player))
+end
+
+-- Run once a second per player as to not overload the system
+script.on_event(defines.events.on_tick,
+  function(event)
+    for _, player in pairs(game.connected_players) do
+      if player.index % 60 == event.tick % 60 then
+        -- Also catches changes not covered by the equipment events below, e.g. death, respawn, and editor mode
+        update_shortcut_available(player)
+        if player.is_shortcut_toggled("autoclearcut-toggle-mobile") then
+          clearing.mobile(player)
+        end
+      end
+    end
+  end
+)
+
+-- Update shortcut availability right away on equipment and armor changes
+script.on_event({
+    defines.events.on_player_placed_equipment,
+    defines.events.on_player_removed_equipment,
+    defines.events.on_player_armor_inventory_changed
+  },
+  function(event)
+    local player = game.get_player(event.player_index)
+    if not player then return end
+    update_shortcut_available(player)
+  end
+)
+
+-- Toggle clearing around the player, the shortcut's toggled state doubles as the stored on/off state
+local function toggle_mobile(event)
+  local player = game.get_player(event.player_index)
+  if not player then return end
+  -- Keyboard shortcut still fires when the button is greyed out, so ignore it then
+  if not player.is_shortcut_available("autoclearcut-toggle-mobile") then return end
+  player.set_shortcut_toggled("autoclearcut-toggle-mobile", not player.is_shortcut_toggled("autoclearcut-toggle-mobile"))
+end
+
+script.on_event("autoclearcut-toggle-mobile", toggle_mobile)
+
+script.on_event(defines.events.on_lua_shortcut,
+  function(event)
+    if event.prototype_name ~= "autoclearcut-toggle-mobile" then return end
+    toggle_mobile(event)
   end
 )
