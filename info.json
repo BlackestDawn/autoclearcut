@@ -1,10 +1,10 @@
 {
   "name": "autoclearcut",
-  "version": "0.3.1",
+  "version": "1.0.0",
   "title": "Automatic Clear Cutting",
   "author": "blacke4dawn",
   "contact": "blacke4dawn@gmail.com",
   "factorio_version": "2.0",
   "dependencies": ["base", "? space-age"],
-  "description": "Will automatically mark trees, rocks, and assorted objects within a roboport's range for deconstruction when built or upgraded."
+  "description": "Automatically marks trees, rocks, cliffs, ruins and other obstacles for deconstruction within a roboport's construction area when it's built or upgraded. Can also continuously clear around the player within their personal roboport's range, toggled from the shortcut bar or with a keybind. Each category of object can be turned on or off in the map settings, and objects from many planet mods are supported."
 }

@@ -1,0 +1,4 @@
+# Files and folders left out of the mod zip when publishing, used by the publish workflow
+
+# Icon source files, only the exported PNGs are needed in game
+/graphics/icons/src/
