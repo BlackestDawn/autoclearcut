@@ -58,10 +58,15 @@ function mod.stationary(entity, playerID)
   clear_cutting(entity.surface, area_around(entity.position, radius), player, force)
 end
 
+-- Function for checking if player has a character with personal roboport equipped
+function mod.has_personal_roboport(player)
+  return player.character ~= nil and player.character.logistic_cell ~= nil
+end
+
 -- Function for clearing area around player
 function mod.mobile(player)
-  if not player.character or not player.character.logistic_cell then return end
-  if not player.character.allow_dispatching_robots then return end
+  if not mod.has_personal_roboport(player) then return end
+  -- if not player.character.allow_dispatching_robots then return end
 
   local radius = player.character.logistic_cell.construction_radius - settings.global["autoclearcut-margin-distance"].value
   if radius <= 0 then return end

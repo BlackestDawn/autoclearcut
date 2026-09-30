@@ -2,7 +2,7 @@
 Version: 1.0.0
 Date: 2026-09-30
   Major Features:
-    - Added ability to clear around player using their personal roboports
+    - Added ability to clear around player using their personal roboports, can be toggled and is off by default
   Changes:
     - Added checks to minimize unncessary operations, like not marking objects already marked
 ---------------------------------------------------------------------------------------------------
