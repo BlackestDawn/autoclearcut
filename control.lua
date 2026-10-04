@@ -21,8 +21,6 @@ script.on_event(defines.events.on_robot_built_entity,
     local playerID
     if event.entity.last_user ~= nil then
       playerID = event.entity.last_user.index
-    elseif event.player ~= nil then
-      playerID = event.player.index
     end
     clearing.stationary(event.entity, playerID)
   end,
